@@ -1,0 +1,388 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calculator {
+    background: #1e1e2e;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.mode-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: #2d2d3d;
+    color: #a0a0b0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tab:hover {
+    background: #3d3d4d;
+}
+
+.tab.active {
+    background: #4f46e5;
+    color: white;
+}
+
+.history-btn {
+    background: #7c3aed;
+}
+
+.history-btn:hover {
+    background: #8b5cf6;
+}
+
+.display {
+    background: #0d0d1a;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.memory-indicator {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    color: #d97706;
+    font-size: 12px;
+    font-weight: 600;
+    display: none;
+}
+
+.memory-indicator.active {
+    display: block;
+}
+
+.previous-operand {
+    color: #6b7280;
+    font-size: 16px;
+    min-height: 24px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.current-operand {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.base-indicator {
+    color: #4f46e5;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.decimal-equivalent {
+    color: #6b7280;
+    font-size: 12px;
+    margin-top: 3px;
+    text-align: right;
+}
+
+.history-panel {
+    background: #0d0d1a;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2d2d3d;
+}
+
+.history-header h3 {
+    color: #ffffff;
+    font-size: 18px;
+    margin: 0;
+}
+
+.clear-history {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.clear-history:hover {
+    background: #ef4444;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-item {
+    background: #2d2d3d;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #a0a0b0;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.history-item:hover {
+    background: #3d3d4d;
+}
+
+.history-item .expression {
+    color: #6b7280;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.history-item .result {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.history-item:empty {
+    display: none;
+}
+
+.history-empty {
+    color: #6b7280;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.keypad {
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.memory {
+    background: #d97706;
+    font-size: 14px;
+}
+
+.memory:hover {
+    background: #f59e0b;
+}
+
+.keypad.active {
+    display: grid;
+}
+
+.btn {
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #2d2d3d;
+    color: #ffffff;
+}
+
+.btn:hover {
+    background: #3d3d4d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn.number {
+    background: #3d3d4d;
+}
+
+.btn.number:hover {
+    background: #4d4d5d;
+}
+
+.btn.operator {
+    background: #4f46e5;
+}
+
+.btn.operator:hover {
+    background: #6366f1;
+}
+
+.btn.scientific {
+    background: #059669;
+    font-size: 14px;
+}
+
+.btn.scientific:hover {
+    background: #10b981;
+}
+
+.btn.hex {
+    background: #7c3aed;
+    font-size: 16px;
+}
+
+.btn.hex:hover {
+    background: #8b5cf6;
+}
+
+.btn.clear {
+    background: #dc2626;
+}
+
+.btn.clear:hover {
+    background: #ef4444;
+}
+
+.btn.equals {
+    background: #059669;
+    grid-column: span 2;
+}
+
+.btn.equals:hover {
+    background: #10b981;
+}
+
+.btn.parentheses {
+    background: #d97706;
+    font-size: 16px;
+}
+
+.btn.parentheses:hover {
+    background: #f59e0b;
+}
+
+.base-selector {
+    grid-column: span 4;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.base-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #2d2d3d;
+    color: #a0a0b0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.base-btn:hover {
+    background: #3d3d4d;
+}
+
+.base-btn.active {
+    background: #4f46e5;
+    color: white;
+}
+
+/* Hide hex buttons in non-hex modes */
+.programmer-mode .hex {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.programmer-mode[data-base="hex"] .hex {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Disable invalid digits in BIN mode (only 0 and 1 allowed) */
+.programmer-mode[data-base="bin"] .btn.number:not([data-value="0"]):not([data-value="1"]):not([data-value="."]):not([data-value="-"]) {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Disable invalid digits in OCT mode (only 0-7 allowed) */
+.programmer-mode[data-base="oct"] .btn.number[data-value="8"],
+.programmer-mode[data-base="oct"] .btn.number[data-value="9"] {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Hex buttons already disabled in DEC mode by default */
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .calculator {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .display {
+        padding: 15px;
+    }
+
+    .current-operand {
+        font-size: 28px;
+    }
+
+    .tab {
+        font-size: 11px;
+        padding: 8px;
+    }
+
+    .memory {
+        font-size: 12px;
+    }
+}

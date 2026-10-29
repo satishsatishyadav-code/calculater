@@ -1,0 +1,5 @@
+#secret /environment
+.env
+.env.*
+*.poem
+*.key

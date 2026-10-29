@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="mode-tabs">
+            <button class="tab active" data-mode="basic">Basic</button>
+            <button class="tab" data-mode="scientific">Scientific</button>
+            <button class="tab" data-mode="programmer">Programmer</button>
+            <button class="tab history-btn" data-action="toggle-history">History</button>
+        </div>
+
+        <div class="display">
+            <div class="memory-indicator">M</div>
+            <div class="previous-operand"></div>
+            <div class="current-operand">0</div>
+            <div class="base-indicator" style="display: none;">DEC</div>
+            <div class="decimal-equivalent" style="display: none;">DEC: 0</div>
+        </div>
+
+        <div class="history-panel" style="display: none;">
+            <div class="history-header">
+                <h3>History</h3>
+                <button class="clear-history" data-action="clear-history">Clear</button>
+            </div>
+            <div class="history-list"></div>
+        </div>
+
+        <!-- Basic Mode -->
+        <div class="keypad basic-mode active">
+            <button class="btn memory" data-action="memory-clear">MC</button>
+            <button class="btn memory" data-action="memory-recall">MR</button>
+            <button class="btn memory" data-action="memory-plus">M+</button>
+            <button class="btn memory" data-action="memory-minus">M-</button>
+            
+            <button class="btn clear" data-action="clear">C</button>
+            <button class="btn operator" data-action="backspace">⌫</button>
+            <button class="btn operator" data-action="operator" data-value="%">%</button>
+            <button class="btn operator" data-action="operator" data-value="/">÷</button>
+            
+            <button class="btn number" data-value="7">7</button>
+            <button class="btn number" data-value="8">8</button>
+            <button class="btn number" data-value="9">9</button>
+            <button class="btn operator" data-action="operator" data-value="*">×</button>
+            
+            <button class="btn number" data-value="4">4</button>
+            <button class="btn number" data-value="5">5</button>
+            <button class="btn number" data-value="6">6</button>
+            <button class="btn operator" data-action="operator" data-value="-">−</button>
+            
+            <button class="btn number" data-value="1">1</button>
+            <button class="btn number" data-value="2">2</button>
+            <button class="btn number" data-value="3">3</button>
+            <button class="btn operator" data-action="operator" data-value="+">+</button>
+            
+            <button class="btn number" data-value="0">0</button>
+            <button class="btn number" data-value=".">.</button>
+            <button class="btn equals" data-action="calculate">=</button>
+        </div>
+
+        <!-- Scientific Mode -->
+        <div class="keypad scientific-mode">
+            <button class="btn memory" data-action="memory-clear">MC</button>
+            <button class="btn memory" data-action="memory-recall">MR</button>
+            <button class="btn memory" data-action="memory-plus">M+</button>
+            <button class="btn memory" data-action="memory-minus">M-</button>
+            
+            <button class="btn clear" data-action="clear">C</button>
+            <button class="btn operator" data-action="backspace">⌫</button>
+            <button class="btn operator" data-action="operator" data-value="^">^</button>
+            <button class="btn operator" data-action="operator" data-value="/">÷</button>
+            
+            <button class="btn scientific" data-action="scientific" data-value="sin">sin</button>
+            <button class="btn scientific" data-action="scientific" data-value="cos">cos</button>
+            <button class="btn scientific" data-action="scientific" data-value="tan">tan</button>
+            <button class="btn operator" data-action="operator" data-value="*">×</button>
+            
+            <button class="btn scientific" data-action="scientific" data-value="log">log</button>
+            <button class="btn scientific" data-action="scientific" data-value="ln">ln</button>
+            <button class="btn scientific" data-action="scientific" data-value="sqrt">√</button>
+            <button class="btn operator" data-action="operator" data-value="-">−</button>
+            
+            <button class="btn scientific" data-action="scientific" data-value="pi">π</button>
+            <button class="btn scientific" data-action="scientific" data-value="e">e</button>
+            <button class="btn scientific" data-action="scientific" data-value="fact">n!</button>
+            <button class="btn operator" data-action="operator" data-value="+">+</button>
+            
+            <button class="btn number" data-value="7">7</button>
+            <button class="btn number" data-value="8">8</button>
+            <button class="btn number" data-value="9">9</button>
+            <button class="btn parentheses" data-action="parenthesis" data-value="(">(</button>
+            
+            <button class="btn number" data-value="4">4</button>
+            <button class="btn number" data-value="5">5</button>
+            <button class="btn number" data-value="6">6</button>
+            <button class="btn parentheses" data-action="parenthesis" data-value=")">)</button>
+            
+            <button class="btn number" data-value="1">1</button>
+            <button class="btn number" data-value="2">2</button>
+            <button class="btn number" data-value="3">3</button>
+            <button class="btn equals" data-action="calculate">=</button>
+            
+            <button class="btn number" data-value="0">0</button>
+            <button class="btn number" data-value=".">.</button>
+            <button class="btn number" data-value="-">±</button>
+        </div>
+
+        <!-- Programmer Mode -->
+        <div class="keypad programmer-mode">
+            <div class="base-selector">
+                <button class="base-btn active" data-base="dec">DEC</button>
+                <button class="base-btn" data-base="hex">HEX</button>
+                <button class="base-btn" data-base="bin">BIN</button>
+                <button class="base-btn" data-base="oct">OCT</button>
+            </div>
+            
+            <button class="btn memory" data-action="memory-clear">MC</button>
+            <button class="btn memory" data-action="memory-recall">MR</button>
+            <button class="btn memory" data-action="memory-plus">M+</button>
+            <button class="btn memory" data-action="memory-minus">M-</button>
+            
+            <button class="btn clear" data-action="clear">C</button>
+            <button class="btn operator" data-action="backspace">⌫</button>
+            <button class="btn operator" data-action="bitwise" data-value="AND">AND</button>
+            <button class="btn operator" data-action="bitwise" data-value="OR">OR</button>
+            
+            <button class="btn hex" data-value="A">A</button>
+            <button class="btn hex" data-value="B">B</button>
+            <button class="btn hex" data-value="C">C</button>
+            <button class="btn operator" data-action="bitwise" data-value="XOR">XOR</button>
+            
+            <button class="btn hex" data-value="D">D</button>
+            <button class="btn hex" data-value="E">E</button>
+            <button class="btn hex" data-value="F">F</button>
+            <button class="btn operator" data-action="bitwise" data-value="NOT">NOT</button>
+            
+            <button class="btn number" data-value="7">7</button>
+            <button class="btn number" data-value="8">8</button>
+            <button class="btn number" data-value="9">9</button>
+            <button class="btn operator" data-action="bitwise" data-value="LSH"><<</button>
+            
+            <button class="btn number" data-value="4">4</button>
+            <button class="btn number" data-value="5">5</button>
+            <button class="btn number" data-value="6">6</button>
+            <button class="btn operator" data-action="bitwise" data-value="RSH">>></button>
+            
+            <button class="btn number" data-value="1">1</button>
+            <button class="btn number" data-value="2">2</button>
+            <button class="btn number" data-value="3">3</button>
+            <button class="btn equals" data-action="calculate">=</button>
+            
+            <button class="btn number" data-value="0">0</button>
+            <button class="btn number" data-value=".">.</button>
+            <button class="btn number" data-value="-">±</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

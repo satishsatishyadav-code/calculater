@@ -1,0 +1,37 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Database
+backend/database/calculator.db
+backend/database/*.db
+backend/database/*.sqlite
+backend/database/*.sqlite3
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
